@@ -17,17 +17,27 @@ public class GamePenal extends JPanel implements ActionListener {
     private JLabel statusBar;
     private JLabel scoreBar;
     private JLabel hScoreBar;
+    private ImageIcon icon;
+    private Image img;
     
     private Controller controller;
     
     public GamePenal(Frame frame) {
         setFocusable(true);
-        setBackground(Color.WHITE);
+        icon = new ImageIcon(getClass().getResource("coordsbg.png"));
+        img = icon.getImage();
+//      setBackground(Color.WHITE);
         controller = new Controller(BOARD_WIDTH, BOARD_HEIGHT, this);
         statusBar = frame.getStatusBar();
         scoreBar = frame.getScoreBar();
         hScoreBar = frame.getHighestScore();
         addKeyListener(new TAdapter());
+    }
+    
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+        //        g.drawImage(img, 0, 0, 240, 500, this);
     }
     
     public void start() {
@@ -61,13 +71,13 @@ public class GamePenal extends JPanel implements ActionListener {
         Color colors[] =
         {
             new Color(0, 0, 0),
-            new Color(255, 0, 0), //Z形方塊 red
-            new Color(255, 200, 0), //S形方塊 orange
-            new Color(255, 255, 0),//I（Line）形方塊 yellow
-            new Color(0, 255, 0), //T形方塊 green
-            new Color(0,255,255),//方形方塊 cyan
-            new Color(0, 0, 255), //L形方塊 blue
-            new Color(128,0,128)//反L形方塊 Purple
+            new Color(189,183,107), //Z形方塊 DarkKhaki
+            new Color(135,206,235), //S形方塊 SkyBlue
+            new Color(60,179,113),//I形方塊 SpringGreen
+            new Color(245,222,179), //T形方塊 Wheat
+            new Color(240,230,140),//方形方塊 Khaki
+            new Color(240,248,255), //L形方塊 AliceBlue
+            new Color(107,142,35)//反L形方塊 Beige
         };
         
         Color color = colors[shape.ordinal()];
